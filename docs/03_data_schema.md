@@ -174,6 +174,5 @@ erDiagram
 | --- | --- | --- |
 | 중복 결제 이벤트 (동일 event_at 2회 기록) | subscription_events | payment의 약 0.5% |
 | 내부 테스트 계정 (`test_` 접두 user_id) | 전 테이블 | 약 200명 |
-| 시간대 혼재 (web 로그만 UTC 기록) | exposures | web 노출 전체 |
 | 노출 기록 없이 체험 시작된 유저 | subscription_events | 약 0.3% |
 | 유입 경로 결측 | users | 약 2% |

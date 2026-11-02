@@ -116,6 +116,5 @@
 | --- | --- | --- | --- |
 | 중복 결제 이벤트 | subscription_events | 66건 | event_id 외 컬럼이 모두 같은 행 |
 | 내부 테스트 계정 | 전 테이블 | 200명 | `test_` 접두 user_id |
-| 시간대 혼재 | exposures (web) | 47,465건 | 플랫폼별 노출 시간대 분포 비교 |
 | 노출 기록 유실 | exposures | 체험 시작자 78명 | subscription_events에는 있으나 exposures에 없는 user_id |
 | 유입 경로 결측 | users | 6,393명 | acquisition_channel 결측 |
