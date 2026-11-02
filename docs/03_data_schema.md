@@ -147,23 +147,28 @@ erDiagram
 | status | string | completed / serial |
 | total_episodes | int | 현재까지 공개 회차 수 |
 
-## 3. 예상 데이터 규모
+## 3. 데이터 규모 (생성 결과)
 
-| 테이블 | 예상 행 수 | 기준 |
-| --- | --- | --- |
-| users | 약 315,000 | 21일 × 일 노출자 15,000명 |
-| exposures | 약 315,000 | 노출자 1명당 1행 |
-| subscription_events | 약 50,000 | 체험 시작자 약 25,000명 × 평균 2건 |
-| coin_transactions | 약 300,000 | 체험 시작자 60일 코인 결제 |
-| daily_reading | 약 1,200,000 | 체험 시작자 × 열람일 × 이용 방식 |
-| titles | 6,300 | 완결작 4,800 + 활성 연재작 1,500 |
+| 테이블 | 행 수 | 파일 | 용량 |
+| --- | --- | --- | --- |
+| users | 315,200 | users.csv.gz | 4.0MB |
+| exposures | 315,122 | exposures.csv.gz | 2.3MB |
+| subscription_events | 61,011 | subscription_events.csv | 3.0MB |
+| coin_transactions | 825,552 | coin_transactions.csv.gz | 10.2MB |
+| daily_reading | 1,865,128 | daily_reading.csv.gz | 6.0MB |
+| titles | 6,300 | titles.csv | 0.2MB |
 
+- 행 수는 품질 이슈(테스트 계정, 중복, 유실) 포함 기준
+- 설계 단계 예상치 대비 daily_reading(120만 → 187만), coin_transactions(30만 → 83만) 증가
+  - 같은 유저·날짜라도 이용 방식(free·wait_free·coin·pass)별로 행 분리
+  - 코인 결제를 유저·날짜·구매 목적 단위로 기록
 - 대용량 테이블은 `.csv.gz` 압축 저장 (GitHub 파일당 100MB 제한 대응, pandas 직접 로드 가능)
 - 코인 결제·열람 기록은 체험 시작자만 생성, 미체험 노출자는 전환율 분모로만 사용
 
 ## 4. 데이터 정제용 품질 이슈
 
 - 실제 로그 환경 재현 목적으로 의도적 삽입, 분석 첫 단계에서 탐지 및 정제
+- 삽입 규모: [04_generation_rules.md](04_generation_rules.md) 6장
 
 | 이슈 | 위치 | 비중 |
 | --- | --- | --- |
