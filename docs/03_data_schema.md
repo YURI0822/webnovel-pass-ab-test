@@ -149,16 +149,17 @@ erDiagram
 
 ## 3. 데이터 규모 (생성 결과)
 
-| 테이블 | 행 수 | 파일 | 용량 |
-| --- | --- | --- | --- |
-| users | 315,200 | users.csv.gz | 4.0MB |
-| exposures | 315,122 | exposures.csv.gz | 2.3MB |
-| subscription_events | 61,011 | subscription_events.csv | 3.0MB |
-| coin_transactions | 825,552 | coin_transactions.csv.gz | 10.2MB |
-| daily_reading | 1,865,128 | daily_reading.csv.gz | 6.0MB |
-| titles | 6,300 | titles.csv | 0.2MB |
+| 테이블 | 원본 행 수 | 정제 후 행 수 | 원본 파일 | 용량 |
+| --- | --- | --- | --- | --- |
+| users | 315,200 | 314,922 | users.csv.gz | 4.0MB |
+| exposures | 315,122 | 314,922 | exposures.csv.gz | 2.3MB |
+| subscription_events | 61,011 | 60,367 | subscription_events.csv | 3.0MB |
+| coin_transactions | 825,552 | 823,238 | coin_transactions.csv.gz | 10.2MB |
+| daily_reading | 1,865,128 | 1,859,866 | daily_reading.csv.gz | 6.0MB |
+| titles | 6,300 | 6,300 | titles.csv | 0.2MB |
 
-- 행 수는 품질 이슈(테스트 계정, 중복, 유실) 포함 기준
+- 원본 행 수는 품질 이슈(테스트 계정, 중복, 유실) 포함 기준
+- 정제 후 데이터는 `data/clean/`에 테이블별 `.csv.gz`로 저장 (분석 노트북 입력)
 - 설계 단계 예상치 대비 daily_reading(120만 → 187만), coin_transactions(30만 → 83만) 증가
   - 같은 유저·날짜라도 이용 방식(free·wait_free·coin·pass)별로 행 분리
   - 코인 결제를 유저·날짜·구매 목적 단위로 기록
@@ -176,3 +177,5 @@ erDiagram
 | 내부 테스트 계정 (`test_` 접두 user_id) | 전 테이블 | 약 200명 |
 | 노출 기록 없이 체험 시작된 유저 | subscription_events | 약 0.3% |
 | 유입 경로 결측 | users | 약 2% |
+
+- 정제 결과: `data/clean/` 저장, 이슈별 탐지·처리 내역은 [02_sanity_check.ipynb](../notebooks/02_sanity_check.ipynb) 참고

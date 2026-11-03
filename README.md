@@ -10,12 +10,17 @@
 | 1 | [도메인 설정](docs/01_domain_setting.md) | 완료 |
 | 2 | [실험 설계](docs/02_experiment_design.md) | 완료 |
 | 3 | 가상 데이터 생성 ([데이터 구조](docs/03_data_schema.md), [생성 노트북](notebooks/01_generate_data.ipynb), [생성 규칙](docs/04_generation_rules.md)) | 완료 |
-| 4 | 분석 및 의사결정 | 진행 중 |
+| 4 | 데이터 정제 ([정제 노트북](notebooks/02_sanity_check.ipynb)) | 완료 |
+| 5 | 분석 및 의사결정 | 진행 중 |
 
 ## 폴더 구조
 
 ```
-docs/        설정서, 실험 설계, 데이터 구조, 생성 규칙
-data/        생성한 가상 데이터 (6개 테이블)
-notebooks/   데이터 생성 및 분석 노트북
+docs/          설정서, 실험 설계, 데이터 구조, 생성 규칙
+data/          생성한 원본 가상 데이터 (6개 테이블)
+data/clean/    정제 완료 데이터 (분석 입력)
+notebooks/
+  01_generate_data.ipynb      데이터 생성
+  02_sanity_check.ipynb       품질 이슈 탐지 및 정제
+  03_ab_test_analysis.ipynb   A/B 테스트 분석
 ```
